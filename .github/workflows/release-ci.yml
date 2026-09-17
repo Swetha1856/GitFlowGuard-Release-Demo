@@ -1,0 +1,21 @@
+name: Release CI
+
+on:
+  push:
+    branches:
+      - "release/**"
+
+jobs:
+  release-test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Release validation
+        run: |
+          echo "Running release validation..."
+          test -f RELEASE_NOTES.md
+          echo "Release notes found."
+          echo "Release CI completed successfully."
